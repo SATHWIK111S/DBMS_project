@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+.venv/
+venv/
+
+# Environment files
+.env
+.env.*
+.env.local
+
+# Python caches and models
+__pycache__/
+*.pyc
+*.joblib
+
+# Build and runtime outputs
+dist/
+build/
+uploads/
+
+# OS metadata
+.DS_Store
+Thumbs.db

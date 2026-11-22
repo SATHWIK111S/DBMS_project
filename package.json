@@ -1,0 +1,15 @@
+{
+  "name": "community-disaster-relief-allocation-system",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "description": "DBMS Mini-Project aligned with UN SDG 11: Sustainable Cities & Communities",
+  "scripts": {
+    "test": "node tests/e2e_scenario_runner.js",
+    "test:backend": "cd backend && npm test",
+    "test:python": "cd python-service && python test_service.py",
+    "start:backend": "cd backend && npm start",
+    "start:frontend": "cd frontend && npm run dev",
+    "start:python": "cd python-service && python -m uvicorn main:app --port 8000 --reload"
+  }
+}
