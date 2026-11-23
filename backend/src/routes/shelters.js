@@ -17,7 +17,14 @@ router.get('/', async (req, res) => {
       GROUP BY s.shelter_id
       ORDER BY s.shelter_name
     `);
-    return res.json(rows);
+    const parsed = rows.map(r => ({
+      ...r,
+      latitude: r.latitude != null ? parseFloat(r.latitude) : null,
+      longitude: r.longitude != null ? parseFloat(r.longitude) : null,
+      distinct_supplies: parseInt(r.distinct_supplies, 10) || 0,
+      total_items_count: parseInt(r.total_items_count, 10) || 0
+    }));
+    return res.json(parsed);
   }
 
   const result = db.mem.shelters.map(s => {
