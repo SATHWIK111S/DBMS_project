@@ -28,7 +28,15 @@ router.get('/', async (req, res) => {
     query += ` GROUP BY z.zone_id, i.incident_name ORDER BY z.severity DESC, z.zone_name`;
 
     const { rows } = await db.pool.query(query, params);
-    return res.json(rows);
+    const parsed = rows.map(r => ({
+      ...r,
+      latitude: parseFloat(r.latitude),
+      longitude: parseFloat(r.longitude),
+      family_count: parseInt(r.family_count, 10) || 0,
+      total_individuals: parseInt(r.total_individuals, 10) || 0,
+      total_requests: parseInt(r.total_requests, 10) || 0
+    }));
+    return res.json(parsed);
   }
 
   let list = db.mem.affected_zones;
